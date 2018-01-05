@@ -1,4 +1,4 @@
-package com.sci.oauth2api;
+package com.sci.oauth2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

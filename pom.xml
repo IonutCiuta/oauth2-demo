@@ -5,7 +5,7 @@
 
     <groupId>com.sci</groupId>
     <artifactId>oauth2-sci</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>oauth2-sci</name>
@@ -15,11 +15,14 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.9.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <modules>
         <module>oauth2-api</module>
+        <module>commons</module>
+        <module>trusted-app</module>
+        <module>client-app</module>
     </modules>
 
     <properties>
@@ -40,13 +43,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>
