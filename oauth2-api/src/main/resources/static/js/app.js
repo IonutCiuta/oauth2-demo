@@ -5,11 +5,11 @@ var app = angular.module('oauth2-api', ['ngRoute', 'ngStorage']);
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'templates/register.html',
+            templateUrl: 'template/register.html',
             controller: 'RegisterController'
         })
         .when('/success', {
-            templateUrl: 'templates/success.html',
+            templateUrl: 'template/success.html',
             controller: 'SuccessController'
         })
         .when('/failure', {
