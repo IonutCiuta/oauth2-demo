@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = Api.AUTH_ROOT)
 public class RegistrationController {
-    private static final Logger log = LoggerFactory.getLogger(AuthenticationController.class);
+    private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
     @Autowired
     private AppRegistrationService appRegistrationService;
