@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>oauth2-api</artifactId>
+	<artifactId>oauth2-com.sci.ouath2.app.trusted.api</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>oauth2-api</name>
+	<name>oauth2-com.sci.ouath2.app.trusted.api</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -20,6 +20,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sci</groupId>
+			<artifactId>commons</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 

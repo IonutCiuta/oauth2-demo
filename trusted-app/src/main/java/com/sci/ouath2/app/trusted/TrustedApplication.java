@@ -1,3 +1,5 @@
+package com.sci.ouath2.app.trusted;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

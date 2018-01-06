@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col" align="center">
+        <h5 class="text-danger">Create an account</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col form-group">
+        <label for="name">Username</label>
+        <input type="text"
+               class="form-control"
+               id="name"
+               placeholder="john.doe145"
+               ng-model="user.username">
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col">
+        <label for="domain">Password</label>
+        <input type="password"
+               class="form-control"
+               placeholder="Password"
+               id="domain"
+               ng-model="user.password">
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col" align="center">
+        <button type="submit"
+                class="btn btn-danger btn-sm"
+                ng-click="authenticateUser()">Sign In</button>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col" align="center">
+        <button type="submit"
+                class="btn btn-secondary btn-sm"
+                ng-click="register()">Create account</button>
+    </div>
+</div>
