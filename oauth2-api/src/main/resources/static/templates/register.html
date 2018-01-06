@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col" align="center">
+        <h5>Register your app</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col form-group">
+        <label for="name">App name</label>
+        <input type="text"
+               class="form-control"
+               id="name"
+               placeholder="Facebook"
+               ng-model="appDetails.name">
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col">
+        <label for="domain">App domain</label>
+        <input type="text"
+               class="form-control"
+               id="domain"
+               placeholder="https://www.facebook.com"
+               ng-model="appDetails.domain">
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col">
+        <label for="url">Redirect Url</label>
+        <input type="text"
+               class="form-control"
+               id="url"
+               placeholder="https://www.facebook.com/redirect/oauth2"
+               ng-model="appDetails.redirectUrl">
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col" align="center">
+        <button type="submit"
+                class="btn btn-primary btn-sm"
+                ng-click="register()">Register</button>
+    </div>
+</div>
