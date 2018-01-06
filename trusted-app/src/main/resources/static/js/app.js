@@ -59,6 +59,12 @@ app.controller('CredentialsController', [
 
     $scope.saveCredentials = function() {
         console.log('Credentials: ' + JSON.stringify($scope.app));
-        $location.path('/');
+
+        $http.post('/api/v1/authorization/credentials', $scope.app, {})
+        .then(function(response) {
+           $location.path('/');
+        }, function(error) {
+            console.error(JSON.stringify(error));
+        });
     }
 }]);
