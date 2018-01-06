@@ -4,6 +4,34 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-sm form-group">
+        <label for="firstName">First name</label>
+        <input type="text"
+               class="form-control"
+               id="firstName"
+               placeholder="John"
+               ng-model="user.firstName">
+    </div>
+    <div class="col-sm form-group">
+        <label for="lastName">Last name</label>
+        <input type="text"
+               class="form-control"
+               id="lastName"
+               placeholder="Doe"
+               ng-model="user.lastName">
+    </div>
+</div>
+<div class="row">
+    <div class="col form-group">
+        <label for="phone">Phone</label>
+        <input type="number"
+               class="form-control"
+               id="phone"
+               placeholder="+40720111222"
+               ng-model="user.phone">
+    </div>
+</div>
+<div class="row">
     <div class="col form-group">
         <label for="name">Username</label>
         <input type="text"

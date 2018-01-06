@@ -1,4 +1,4 @@
-package com.sci.oauth2.values;
+package values;
 
 
 /**

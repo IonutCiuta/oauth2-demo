@@ -3,7 +3,7 @@ package com.sci.oauth2.api.auth;
 import com.sci.oauth2.dto.AppCredentials;
 import com.sci.oauth2.dto.AppDetails;
 import com.sci.oauth2.service.AppRegistrationService;
-import com.sci.oauth2.values.Api;
+import values.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

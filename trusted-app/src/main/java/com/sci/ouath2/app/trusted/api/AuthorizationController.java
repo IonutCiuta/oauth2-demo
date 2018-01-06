@@ -1,6 +1,6 @@
 package com.sci.ouath2.app.trusted.api;
 
-import com.sci.oauth2.values.Api;
+import values.Api;
 import com.sci.ouath2.app.trusted.dao.AuthorizationRepo;
 import dto.Credentials;
 import com.sci.ouath2.app.trusted.model.Authorization;
