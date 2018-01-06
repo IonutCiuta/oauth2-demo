@@ -20,7 +20,7 @@ public class AccountController {
 
     @PostMapping("/account/create")
     public ResponseEntity<Void> createAccount(@RequestBody User user) {
-        log.info("{} {}", user.getUsername(), user.getPassword());
+        log.info("{}", user);
         return ResponseEntity.ok(null);
     }
 }

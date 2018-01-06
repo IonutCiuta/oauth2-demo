@@ -29,6 +29,15 @@ app.controller('CreateAccountController', [
 
     $scope.createAccount = function() {
         console.log('Account:' + JSON.stringify($scope.user));
+        $http.post('/api/v1/account/create', $scope.user, {})
+        .then(function(response) {
+            console.log("Account created successfully!");
+            $rootScope.username = $scope.user.username;
+            $rootScope.password = $scope.user.password;
+            $scope.authenticate();
+        }, function(error) {
+            console.error(JSON.stringify(error));
+        });
     }
 }]);
 
@@ -36,6 +45,8 @@ app.controller('AuthenticationController', [
                 '$scope', '$rootScope', '$localStorage', '$location', '$http',
                 function($scope, $rootScope, $localStorage, $location, $http) {
     console.log('Authentication area');
+
+    checkUserDetails();
 
     $scope.register = function() {
         $location.path('/');
@@ -48,6 +59,16 @@ app.controller('AuthenticationController', [
             $location.path('/credentials');
         } else {
             $scope.register();
+        }
+    }
+
+    function checkUserDetails() {
+        if($rootScope.username && $rootScope.password) {
+            console.log("Found user details")
+            $scope.user = {
+                "username": $rootScope.username,
+                "password": $rootScope.password
+            }
         }
     }
 }]);
