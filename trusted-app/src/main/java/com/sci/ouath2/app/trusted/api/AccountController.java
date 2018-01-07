@@ -1,5 +1,9 @@
 package com.sci.ouath2.app.trusted.api;
 
+import com.sci.ouath2.app.trusted.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestTemplate;
 import values.Api;
 import dto.User;
 import org.slf4j.Logger;
@@ -18,9 +22,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
+    @Autowired
+    private AccountService accountService;
+
     @PostMapping("/account/create")
     public ResponseEntity<Void> createAccount(@RequestBody User user) {
         log.info("{}", user);
-        return ResponseEntity.ok(null);
+        if(accountService.createAccount(user)) {
+            log.info("Account successfully created");
+            return ResponseEntity.ok(null);
+        } else {
+            log.info("Error while creating account");
+            return ResponseEntity.status(500).build();
+        }
     }
 }
