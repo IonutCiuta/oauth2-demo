@@ -58,7 +58,7 @@ app.controller('AuthenticationController', [
                 console.log("Authentication was successful: " + response.data.token);
 
                 $localStorage.token = response.data.token;
-
+                $location.path('/account');
             }, function(error) {
                 console.error(JSON.stringify(error));
             });
@@ -94,27 +94,40 @@ app.controller('CredentialsController', [
         console.log('Credentials: ' + JSON.stringify($scope.app));
 
         $http.post('/api/v1/authorization/credentials', $scope.app, {})
-        .then(function(response) {
-           $location.path('/');
-        }, function(error) {
-            console.error(JSON.stringify(error));
-        });
+            .then(function(response) {
+               $location.path('/');
+            }, function(error) {
+                console.error(JSON.stringify(error));
+            });
     }
 }]);
 
 app.controller('AccountController', [
                 '$scope', '$rootScope', '$localStorage', '$location', '$http',
                 function($scope, $rootScope, $localStorage, $location, $http) {
-    console.log('Account area');
+    console.log('Account area: ' + $localStorage.token);
 
     $scope.showDetails = false;
     $scope.showSpinner = true;
-
-    $scope.name = "unknown";
-    $scope.phone = "+40 728 000 000";
 
     $scope.hide = function() {
         $scope.showDetails = true;
         $scope.showSpinner = false;
     }
+
+    $http.get('/api/v1/account/details',
+              {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'User-Token': $localStorage.token
+                  }
+              }
+          ).then(function(response) {
+              console.log(JSON.stringify(response.data));
+              $scope.showDetails = true;
+              $scope.showSpinner = false;
+              $scope.details = response.data;
+          }, function(error) {
+              console.error(JSON.stringify(error));
+          });
 }]);

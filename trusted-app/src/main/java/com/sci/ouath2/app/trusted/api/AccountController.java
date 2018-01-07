@@ -1,8 +1,10 @@
 package com.sci.ouath2.app.trusted.api;
 
+import com.sci.ouath2.app.trusted.model.Authentication;
 import com.sci.ouath2.app.trusted.service.AccountService;
 import com.sci.ouath2.app.trusted.service.AuthenticationService;
 import com.sci.ouath2.app.trusted.service.AuthorizationService;
+import dto.Details;
 import dto.OAuth2Token;
 import dto.User;
 import dto.UserToken;
@@ -10,10 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import values.Api;
 
 /**
@@ -51,5 +50,15 @@ public class AccountController {
         OAuth2Token auth2Token = authorizationService.authenticateUser(user);
 
         return authenticationService.storeAuthentication(auth2Token);
+    }
+
+    @GetMapping("/account/details")
+    public Details getAccountDetails(@RequestHeader(value="User-Token") String token) {
+        log.info("Token: {}", token);
+
+        Authentication authentication = authenticationService.getAuthentication(token);
+        log.info("Authentication: {}", authentication);
+
+        return new Details("JOHN", "DEMO", "xxxx");
     }
 }

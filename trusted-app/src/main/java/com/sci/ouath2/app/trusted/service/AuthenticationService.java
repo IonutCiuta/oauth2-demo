@@ -30,6 +30,10 @@ public class AuthenticationService {
         return new UserToken(authentication.getUserToken());
     }
 
+    public Authentication getAuthentication(String userToken) {
+        return authenticationRepo.findByUserToken(userToken);
+    }
+
     private String generateUserToken() {
         return UUID.randomUUID().toString();
     }
