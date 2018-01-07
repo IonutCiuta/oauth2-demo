@@ -52,6 +52,9 @@ app.controller('AuthenticationController', [
         $http.post('/api/v1/account/authenticate', $scope.user, {})
             .then(function(response) {
                 console.log("Authentication was successful: " + response.data.token);
+
+                $localStorage.token = response.data.token;
+
             }, function(error) {
                 console.error(JSON.stringify(error));
             });
