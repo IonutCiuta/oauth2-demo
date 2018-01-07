@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -25,11 +26,12 @@ public class TokenService {
         return new OAuth2Token(token,null, LIFESPAN);
     }
 
-    public AccountToken storeToken(Account account, OAuth2Token token) {
+    public AccountToken storeToken(Account account, OAuth2Token token, Set<String> scope) {
         AccountToken accountToken = new AccountToken();
         accountToken.setAccountId(account.getId());
         accountToken.setToken(token);
         accountToken.setCreated(new Date());
+        accountToken.setScope(scope);
         return accountTokenRepo.save(accountToken);
     }
 }

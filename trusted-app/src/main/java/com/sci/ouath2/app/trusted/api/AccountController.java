@@ -1,18 +1,17 @@
 package com.sci.ouath2.app.trusted.api;
 
 import com.sci.ouath2.app.trusted.service.AccountService;
+import com.sci.ouath2.app.trusted.service.AuthorizationService;
+import dto.Authentication;
+import dto.OAuth2Token;
+import dto.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.*;
 import values.Api;
 import dto.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ionutciuta24@gmail.com on 06.01.2018.
@@ -25,6 +24,9 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private AuthorizationService authorizationService;
+
     @PostMapping("/account/create")
     public ResponseEntity<Void> createAccount(@RequestBody User user) {
         log.info("{}", user);
@@ -35,5 +37,12 @@ public class AccountController {
             log.info("Error while creating account");
             return ResponseEntity.status(500).build();
         }
+    }
+
+    @PostMapping("/account/authenticate")
+    public UserToken authenicateUser(@RequestBody User user) {
+        log.info("{}", user);
+        OAuth2Token auth2Token = authorizationService.authenticateUser(user);
+        return new UserToken(auth2Token.getToken());
     }
 }

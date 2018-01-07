@@ -2,6 +2,7 @@ package com.sci.oauth2.api.auth;
 
 import authorization.AuthField;
 import authorization.Grant;
+import authorization.Scope;
 import com.sci.oauth2.model.Account;
 import com.sci.oauth2.service.AccountService;
 import com.sci.oauth2.service.SecurityService;
@@ -14,7 +15,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import values.Api;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * ionutciuta24@gmail.com on 07.01.2018.
@@ -52,6 +56,7 @@ public class AuthorizationController {
     private OAuth2Token getTokenForPasswordGrant(Map<String, String> data) {
         String username = data.get(AuthField.USERNAME);
         String password = data.get(AuthField.PASSWORD);
+        String scope = Scope.ALL;
 
         if(!securityService.checkUsernamePasswordCombination(username, password)) {
             throw new IllegalStateException("User/pass don't match");
@@ -67,6 +72,12 @@ public class AuthorizationController {
         Account account = accountService.loadAccount(username);
         OAuth2Token token = tokenService.generateToken();
 
-        return tokenService.storeToken(account, token).getToken();
+        return tokenService.storeToken(account, token, getScope(scope)).getToken();
+    }
+
+    private Set<String> getScope(String requestScope) {
+        Set<String> scope = new HashSet<>();
+        scope.addAll(Arrays.asList(requestScope.split(",")));
+        return scope;
     }
 }

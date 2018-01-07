@@ -30,14 +30,14 @@ app.controller('CreateAccountController', [
     $scope.createAccount = function() {
         console.log('Account:' + JSON.stringify($scope.user));
         $http.post('/api/v1/account/create', $scope.user, {})
-        .then(function(response) {
-            console.log("Account created successfully!");
-            $rootScope.username = $scope.user.username;
-            $rootScope.password = $scope.user.password;
-            $scope.authenticate();
-        }, function(error) {
-            console.error(JSON.stringify(error));
-        });
+            .then(function(response) {
+                console.log("Account created successfully!");
+                $rootScope.username = $scope.user.username;
+                $rootScope.password = $scope.user.password;
+                $scope.authenticate();
+            }, function(error) {
+                console.error(JSON.stringify(error));
+            });
     }
 }]);
 
@@ -49,7 +49,12 @@ app.controller('AuthenticationController', [
     checkUserDetails();
 
     $scope.register = function() {
-        $location.path('/');
+        $http.post('/api/v1/account/authenticate', $scope.user, {})
+            .then(function(response) {
+                console.log("Authentication was successful: " + response.data.token);
+            }, function(error) {
+                console.error(JSON.stringify(error));
+            });
     }
 
     $scope.authenticateUser = function() {

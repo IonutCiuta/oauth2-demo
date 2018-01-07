@@ -4,6 +4,8 @@ import dto.OAuth2Token;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * ionutciuta24@gmail.com on 07.01.2018.
@@ -12,6 +14,7 @@ public class AccountToken {
     @Id
     private String accountId;
     private OAuth2Token token;
+    private Set<String> scope = new HashSet<>();
     private Date created;
 
     public String getAccountId() {
@@ -36,5 +39,13 @@ public class AccountToken {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public Set<String> getScope() {
+        return scope;
+    }
+
+    public void setScope(Set<String> scope) {
+        this.scope = scope;
     }
 }

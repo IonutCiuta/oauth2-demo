@@ -9,4 +9,5 @@ public class AuthField {
     public static final String PASSWORD= "password";
     public static final String APP_ID = "app_id";
     public static final String APP_SECRET = "app_secret";
+    public static final String SCOPE = "scope";
 }

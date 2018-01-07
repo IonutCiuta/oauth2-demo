@@ -43,7 +43,7 @@ public class RequestBuilder {
     }
 
     public RequestBuilder withJsonHeaders() {
-        this.headers.setContentType(MediaType.valueOf("application/hal+json"));
+        this.headers.setContentType(MediaType.valueOf("application/json"));
         this.headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         return this;
     }
@@ -128,5 +128,15 @@ public class RequestBuilder {
             log.error(e.getMessage());
             return null;
         }
+    }
+
+    public RequestBuilder acceptJson() {
+        this.headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        return this;
+    }
+
+    public RequestBuilder sendUrlFormEncoded() {
+        this.headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        return this;
     }
 }
