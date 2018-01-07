@@ -15,6 +15,10 @@ app.config(function($routeProvider) {
         .when('/credentials', {
             templateUrl: 'template/credentials.html',
             controller: 'CredentialsController'
+        })
+        .when('/account', {
+            templateUrl: 'template/account.html',
+            controller: 'AccountController'
         });
 });
 
@@ -95,5 +99,22 @@ app.controller('CredentialsController', [
         }, function(error) {
             console.error(JSON.stringify(error));
         });
+    }
+}]);
+
+app.controller('AccountController', [
+                '$scope', '$rootScope', '$localStorage', '$location', '$http',
+                function($scope, $rootScope, $localStorage, $location, $http) {
+    console.log('Account area');
+
+    $scope.showDetails = false;
+    $scope.showSpinner = true;
+
+    $scope.name = "unknown";
+    $scope.phone = "+40 728 000 000";
+
+    $scope.hide = function() {
+        $scope.showDetails = true;
+        $scope.showSpinner = false;
     }
 }]);
