@@ -1,6 +1,7 @@
 package com.sci.ouath2.app.trusted.service;
 
 import dto.Authentication;
+import dto.Details;
 import dto.OAuth2Token;
 import dto.User;
 import http.RequestBuilder;
@@ -38,5 +39,21 @@ public class AccountService {
             .makeCall(restTemplate, Void.class);
 
         return result.getStatusCode().is2xxSuccessful();
+    }
+
+    public ResponseEntity<Details> getAccountDetails(String oauthToken) {
+        String url = UriComponentsBuilder
+                .fromHttpUrl(appServerUrl)
+                .pathSegment("resource/account/details")
+                .build().toUriString();
+
+        ResponseEntity<Details> result = RequestBuilder
+                .prepareCall(url)
+                .authorizedWith(oauthToken)
+                .acceptJson()
+                .withGetMethod()
+                .makeCall(restTemplate, Details.class);
+
+        return result;
     }
 }

@@ -139,4 +139,8 @@ public class RequestBuilder {
         this.headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         return this;
     }
+
+    public RequestBuilder authorizedWith(String oauthToken) {
+        return withHeader("Authorization", oauthToken);
+    }
 }

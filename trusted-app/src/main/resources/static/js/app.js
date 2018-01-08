@@ -115,19 +115,21 @@ app.controller('AccountController', [
         $scope.showSpinner = false;
     }
 
-    $http.get('/api/v1/account/details',
-              {
-                  headers: {
+    window.setTimeout(function() {
+        $http.get('/api/v1/account/details',
+            {
+                headers: {
                     'Content-Type': 'application/json',
                     'User-Token': $localStorage.token
-                  }
-              }
-          ).then(function(response) {
-              console.log(JSON.stringify(response.data));
-              $scope.showDetails = true;
-              $scope.showSpinner = false;
-              $scope.details = response.data;
-          }, function(error) {
-              console.error(JSON.stringify(error));
-          });
+                }
+            }
+        ).then(function(response) {
+            console.log(JSON.stringify(response.data));
+            $scope.showDetails = true;
+            $scope.showSpinner = false;
+            $scope.details = response.data;
+        }, function(error) {
+            console.error(JSON.stringify(error));
+        });
+    }, 5000)
 }]);

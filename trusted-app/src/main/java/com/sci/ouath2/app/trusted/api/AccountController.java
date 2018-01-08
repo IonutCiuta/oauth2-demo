@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import values.Api;
 
+import javax.xml.ws.Response;
+
 /**
  * ionutciuta24@gmail.com on 06.01.2018.
  */
@@ -59,6 +61,15 @@ public class AccountController {
         Authentication authentication = authenticationService.getAuthentication(token);
         log.info("Authentication: {}", authentication);
 
-        return new Details("JOHN", "DEMO", "xxxx");
+        ResponseEntity<Details> details = accountService.getAccountDetails(authentication.getOauthToken());
+        log.info("Details request: {}", details.getStatusCodeValue());
+
+        if(details.getStatusCode().is2xxSuccessful()) {
+            Details result = details.getBody();
+            log.info("Details: {}", details);
+            return result;
+        }
+
+        return new Details("", "", "Unauthorized");
     }
 }
