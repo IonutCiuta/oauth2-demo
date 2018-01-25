@@ -1,3 +1,5 @@
+package com.sci.oauth2.client.app;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
