@@ -59,4 +59,14 @@ public class AccountDetails {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "AccountDetails{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }

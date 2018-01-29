@@ -6,16 +6,16 @@ app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'template/authenticate.html',
-            controller: 'CreateAccountController'
+            controller: 'AuthenticationController'
         });
 });
 
 app.controller('AuthenticationController', [
-                '$scope', '$rootScope', '$localStorage', '$location', '$http',
-                function($scope, $rootScope, $localStorage, $location, $http) {
+                '$scope', '$rootScope', '$localStorage', '$location', '$http', '$window',
+                function($scope, $rootScope, $localStorage, $location, $http, $window) {
     console.log('Authentication area');
 
     $scope.authenticate = function() {
-        $location.path('/authenticate');
+        $window.location.href = 'http://localhost:8080/#/authorization';
     }
 }]);
