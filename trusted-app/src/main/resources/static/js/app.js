@@ -144,6 +144,7 @@ app.controller('AuthorizationController', [
                 '$scope', '$rootScope', '$localStorage', '$location', '$http', '$window',
                 function($scope, $rootScope, $localStorage, $location, $http, $window) {
     console.log('Authorization area');
+    console.log(JSON.stringify($location.search()));
 
     //TODO: remove this after proper sign in
     $scope.authUser = "john";

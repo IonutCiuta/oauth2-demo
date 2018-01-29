@@ -5,4 +5,5 @@ package authorization;
  */
 public class Grant {
     public static final String PASSWORD = "password";
+    public static final String TOKEN = "token";
 }

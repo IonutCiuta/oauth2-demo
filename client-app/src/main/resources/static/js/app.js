@@ -16,6 +16,10 @@ app.controller('AuthenticationController', [
     console.log('Authentication area: ' + $window.localStorage.getItem("token"));
 
     $scope.authenticate = function() {
-        $window.location.href = 'http://localhost:8081/#/authorization';
+        $window.location.href = 'http://localhost:8081/#/authorization?' +
+            "appId=id&" +
+            "appSecret=secret&" +
+            "grantType=token&" +
+            "scope=firstname,lastname";
     }
 }]);
