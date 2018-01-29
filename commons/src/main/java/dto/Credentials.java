@@ -6,6 +6,14 @@ package dto;
 public class Credentials {
     private String appId, appSecret;
 
+    public Credentials() {
+    }
+
+    public Credentials(String appId, String appSecret) {
+        this.appId = appId;
+        this.appSecret = appSecret;
+    }
+
     public String getAppId() {
         return appId;
     }

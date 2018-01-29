@@ -20,11 +20,16 @@ app.controller('AuthenticationController', [
     console.log('Authentication area: ' + $window.localStorage.getItem("token"));
 
     $scope.authenticate = function() {
-        $window.location.href = 'http://localhost:8081/#/authorization?' +
-            "appId=95602&" +
-            "appSecret=secret&" +
-            "grantType=token&" +
-            "scope=firstname,lastname";
+        $http.get('/api/v1/authorization/credentials')
+        .then(function(response) {
+            $window.location.href = 'http://localhost:8081/#/authorization' +
+               "?appId=" + response.data.appId +
+               "&appSecret=" + response.data.appSecret +
+               "&grantType=token" +
+               "&scope=firstname,lastname";
+        }, function(error) {
+            console.error(JSON.stringify(error));
+        });
     }
 }]);
 
@@ -37,10 +42,10 @@ app.controller('CredentialsController', [
         console.log('Credentials: ' + JSON.stringify($scope.app));
 
         $http.post('/api/v1/authorization/credentials', $scope.app, {})
-            .then(function(response) {
-               $location.path('/');
-            }, function(error) {
-                console.error(JSON.stringify(error));
-            });
+        .then(function(response) {
+           $location.path('/');
+        }, function(error) {
+            console.error(JSON.stringify(error));
+        });
     }
 }]);

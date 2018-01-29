@@ -146,8 +146,7 @@ app.controller('AuthorizationController', [
     var params = $location.search();
     console.log('Authorization area: ' + JSON.stringify(params));
 
-    //TODO: remove this after proper sign in
-    $scope.authUser = "john";
+    $scope.authUser = $localStorage.user
     $scope.scopes = params.scope;
 
     $scope.showDetails = false;

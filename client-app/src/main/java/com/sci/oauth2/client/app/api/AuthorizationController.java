@@ -5,10 +5,7 @@ import dto.Credentials;
 import model.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import values.Api;
 
 @RestController
@@ -25,6 +22,15 @@ public class AuthorizationController {
         ));
 
         return authorization.getId() != null ? ResponseEntity.ok(null) :
+                ResponseEntity.status(500).body(null);
+    }
+
+    @GetMapping("/authorization/credentials")
+    public ResponseEntity<Credentials> storeAuthorization() {
+        Authorization authorization = authorizationRepo.findAll().get(0);
+
+        return authorization.getId() != null ?
+                ResponseEntity.ok(new Credentials(authorization.getAppId(), authorization.getAppSecret())) :
                 ResponseEntity.status(500).body(null);
     }
 }
