@@ -60,13 +60,17 @@ public class AuthorizationController {
         String appId = data.get(AuthField.APP_ID);
         String appSecret = data.get(AuthField.APP_SECRET);
         String scope = data.get(AuthField.SCOPE);
+        String username = data.get(AuthField.USERNAME);
 
         if(!securityService.checkAppIdAppSecretCombination(appId, appSecret)) {
             throw new IllegalStateException("App id/secret don't match");
         }
 
+        Account account = accountService.loadAccount(username);
         OAuth2Token token = tokenService.generateToken();
-        return tokenService.storeToken(appId, token, getScope(scope)).getToken();
+        token.setRefreshToken(null);
+
+        return tokenService.storeToken(appId, token, getScope(scope), account.getId()).getToken();
     }
 
     private OAuth2Token getTokenForPasswordGrant(Map<String, String> data) {

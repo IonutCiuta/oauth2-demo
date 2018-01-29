@@ -38,7 +38,7 @@ public class ExternalAuthenticationService {
         return result.getBody();
     }
 
-    public OAuth2Token authenticateExternalUser(String appId, String appSecret, String scope) {
+    public OAuth2Token authenticateExternalUser(String appId, String appSecret, String scope, String username) {
         String url = UriComponentsBuilder
                 .fromHttpUrl(appServerUrl)
                 .pathSegment("/oauth/authorize")
@@ -49,20 +49,21 @@ public class ExternalAuthenticationService {
                 .withPostMethod()
                 .acceptJson()
                 .sendUrlFormEncoded()
-                .withBody(externalAuthorizationData(appId, appSecret, scope))
+                .withBody(externalAuthorizationData(appId, appSecret, scope, username))
                 .makeCall(restTemplate, OAuth2Token.class);
 
         return result.getBody();
     }
 
 
-    private MultiValueMap<String, String> externalAuthorizationData(String appId, String appSecret, String scope) {
+    private MultiValueMap<String, String> externalAuthorizationData(String appId, String appSecret, String scope, String username) {
         MultiValueMap<String, String> authorizationData = new LinkedMultiValueMap<String, String>();
 
         authorizationData.add(AuthField.GRANT_TYPE, Grant.TOKEN);
         authorizationData.add(AuthField.APP_ID, appId);
         authorizationData.add(AuthField.APP_SECRET, appSecret);
         authorizationData.add(AuthField.SCOPE, scope);
+        authorizationData.add(AuthField.USERNAME, username);
 
         return authorizationData;
     }

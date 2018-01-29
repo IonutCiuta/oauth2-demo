@@ -29,8 +29,9 @@ public class ExternalAuthenticationController {
     @GetMapping("/account/authenticate/external")
     public UserToken authenicateUser(@RequestParam String appId,
                                      @RequestParam String appSecret,
-                                     @RequestParam String scope) {
-        OAuth2Token auth2Token = externalAuthenticationService.authenticateExternalUser(appId, appSecret, scope);
+                                     @RequestParam String scope,
+                                     @RequestParam String username) {
+        OAuth2Token auth2Token = externalAuthenticationService.authenticateExternalUser(appId, appSecret, scope, username);
         log.info("External token: {}", auth2Token.getToken());
         return new UserToken(auth2Token.getToken());
     }

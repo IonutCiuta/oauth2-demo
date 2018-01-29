@@ -12,6 +12,7 @@ import java.util.Set;
  */
 public class AccountToken {
     @Id
+    private String id;
     private String accountId;
     private String appId;
     private OAuth2Token token;
@@ -56,5 +57,13 @@ public class AccountToken {
 
     public void setScope(Set<String> scope) {
         this.scope = scope;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
