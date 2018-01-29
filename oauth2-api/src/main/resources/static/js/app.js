@@ -15,16 +15,12 @@ app.config(function($routeProvider) {
         .when('/failure', {
             templateUrl: 'template/failure.html',
             controller: 'FailureController'
-        })
-        .when('/authorization', {
-            templateUrl: 'template/authorization.html',
-            controller: 'AuthorizationController'
         });
 });
 
 app.controller('RegisterController', [
-                '$scope', '$rootScope', '$localStorage', '$location', '$http',
-                function($scope, $rootScope, $localStorage, $location, $http) {
+                '$scope', '$rootScope', '$localStorage', '$location', '$http', '$window',
+                function($scope, $rootScope, $localStorage, $location, $http, $window) {
     console.log('Register area');
 
     $scope.register = function() {
@@ -55,15 +51,4 @@ app.controller('SuccessController', [
                 '$scope', '$rootScope', '$localStorage', '$location', '$http',
                 function($scope, $rootScope, $localStorage, $location, $http) {
     console.log('Success area');
-}]);
-
-
-app.controller('AuthorizationController', [
-                '$scope', '$rootScope', '$localStorage', '$location', '$http', '$window',
-                function($scope, $rootScope, $localStorage, $location, $http, $window) {
-    console.log('Authorization area');
-
-    $scope.authorize = function() {
-        console.log("Authorize")
-    }
 }]);

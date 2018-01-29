@@ -19,6 +19,10 @@ app.config(function($routeProvider) {
         .when('/account', {
             templateUrl: 'template/account.html',
             controller: 'AccountController'
+        })
+        .when('/authorization', {
+            templateUrl: 'template/authorization.html',
+            controller: 'AuthorizationController'
         });
 });
 
@@ -46,8 +50,8 @@ app.controller('CreateAccountController', [
 }]);
 
 app.controller('AuthenticationController', [
-                '$scope', '$rootScope', '$localStorage', '$location', '$http',
-                function($scope, $rootScope, $localStorage, $location, $http) {
+                '$scope', '$rootScope', '$localStorage', '$location', '$http', '$window',
+                function($scope, $rootScope, $localStorage, $location, $http, $window) {
     console.log('Authentication area');
 
     checkUserDetails();
@@ -58,6 +62,8 @@ app.controller('AuthenticationController', [
                 console.log("Authentication was successful: " + response.data.token);
 
                 $localStorage.token = response.data.token;
+                //TODO: take care of this $window.localStorage.setItem("token", "token")
+
                 $location.path('/account');
             }, function(error) {
                 console.error(JSON.stringify(error));
@@ -132,4 +138,14 @@ app.controller('AccountController', [
             console.error(JSON.stringify(error));
         });
     }, 5000)
+}]);
+
+app.controller('AuthorizationController', [
+                '$scope', '$rootScope', '$localStorage', '$location', '$http', '$window',
+                function($scope, $rootScope, $localStorage, $location, $http, $window) {
+    console.log('Authorization area');
+
+    $scope.authorize = function() {
+        console.log("Authorize")
+    }
 }]);

@@ -13,9 +13,9 @@ app.config(function($routeProvider) {
 app.controller('AuthenticationController', [
                 '$scope', '$rootScope', '$localStorage', '$location', '$http', '$window',
                 function($scope, $rootScope, $localStorage, $location, $http, $window) {
-    console.log('Authentication area');
+    console.log('Authentication area: ' + $window.localStorage.getItem("token"));
 
     $scope.authenticate = function() {
-        $window.location.href = 'http://localhost:8080/#/authorization';
+        $window.location.href = 'http://localhost:8081/#/authorization';
     }
 }]);
