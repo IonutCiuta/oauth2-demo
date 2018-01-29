@@ -11,7 +11,11 @@ app.config(function($routeProvider) {
         .when('/credentials', {
             templateUrl: 'template/credentials.html',
             controller: 'CredentialsController'
-        });
+        })
+        .when('/account', {
+            templateUrl: 'template/account.html',
+            controller: 'AccountController'
+        })
 });
 
 app.controller('AuthenticationController', [
@@ -48,4 +52,37 @@ app.controller('CredentialsController', [
             console.error(JSON.stringify(error));
         });
     }
+}]);
+
+app.controller('AccountController', [
+                '$scope', '$rootScope', '$localStorage', '$location', '$http',
+                function($scope, $rootScope, $localStorage, $location, $http) {
+    var params = $location.search();
+    console.log('Account area: ' + JSON.stringify(params));
+
+    $scope.showDetails = false;
+    $scope.showSpinner = true;
+
+    $scope.hide = function() {
+        $scope.showDetails = true;
+        $scope.showSpinner = false;
+    }
+
+    /*window.setTimeout(function() {
+        $http.get('/api/v1/account/details',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'User-Token': $localStorage.token
+                }
+            }
+        ).then(function(response) {
+            console.log(JSON.stringify(response.data));
+            $scope.showDetails = true;
+            $scope.showSpinner = false;
+            $scope.details = response.data;
+        }, function(error) {
+            console.error(JSON.stringify(error));
+        });
+    }, 5000)*/
 }]);

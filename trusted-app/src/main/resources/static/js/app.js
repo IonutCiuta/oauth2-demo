@@ -170,10 +170,11 @@ app.controller('AuthorizationController', [
             $http.get('/api/v1/account/authenticate/external' +
                  "?appId=" + params.appId +
                  "&appSecret=" + params.appSecret +
+                 "&username=" + $scope.authUser +
                  "&scope=" + params.scope)
             .then(function(response) {
                 console.log(JSON.stringify(response.data));
-
+                $window.location.href = 'http://localhost:8082/#/account' + "?token=" + response.data.token
             }, function(error) {
                 console.error(error);
             });
