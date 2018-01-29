@@ -3,18 +3,19 @@ package com.sci.oauth2.api.resource;
 import authorization.Scope;
 import com.sci.oauth2.dao.AccountDetailsRepo;
 import com.sci.oauth2.dao.AccountTokenRepo;
+import com.sci.oauth2.dao.AppDetailsRepo;
+import com.sci.oauth2.dto.AppCredentials;
+import com.sci.oauth2.dto.AppDetails;
 import com.sci.oauth2.model.AccountDetails;
 import com.sci.oauth2.model.AccountToken;
 import dto.Details;
+import dto.StringWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import values.Api;
 
 /**
@@ -30,6 +31,9 @@ public class ResourceController {
 
     @Autowired
     private AccountTokenRepo accountTokenRepo;
+
+    @Autowired
+    private AppDetailsRepo appDetailsRepo;
 
     @GetMapping("/resource/account/details")
     public ResponseEntity<Details> getAccountDetails(@RequestHeader("Authorization") String token) {
@@ -59,5 +63,10 @@ public class ResourceController {
                 (accountToken.getScope().contains(Scope.FIRST_NAME) &&
                         accountToken.getScope().contains(Scope.LAST_NAME) &&
                         accountToken.getScope().contains(Scope.PHONE));
+    }
+
+    @GetMapping("/resource/client/name")
+    public ResponseEntity<StringWrapper> getClientAppDetails(@RequestParam String appId) {
+        return ResponseEntity.ok(new StringWrapper(appDetailsRepo.findOne(appId).getAppName()));
     }
 }

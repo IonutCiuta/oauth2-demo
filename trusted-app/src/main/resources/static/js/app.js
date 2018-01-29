@@ -143,14 +143,31 @@ app.controller('AccountController', [
 app.controller('AuthorizationController', [
                 '$scope', '$rootScope', '$localStorage', '$location', '$http', '$window',
                 function($scope, $rootScope, $localStorage, $location, $http, $window) {
-    console.log('Authorization area');
-    console.log(JSON.stringify($location.search()));
+    var params = $location.search();
+    console.log('Authorization area: ' + JSON.stringify(params));
 
     //TODO: remove this after proper sign in
     $scope.authUser = "john";
+    $scope.scopes = params.scope;
+
+    $scope.showDetails = false;
+    $scope.showSpinner = true;
+
+    window.setTimeout(function() {
+        $http.get('/api/v1/resource/client/name?appId=' + params.appId)
+        .then(function(response) {
+            console.log(JSON.stringify(response.data));
+            $scope.showDetails = true;
+            $scope.showSpinner = false;
+            $scope.appName = response.data.value;
+        }, function(error) {
+            console.error(error);
+        });
+    }, 3000)
 
     $scope.authorize = function() {
         console.log("Authorize");
+
     }
 
     $scope.decline = function() {

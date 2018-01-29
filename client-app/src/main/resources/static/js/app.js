@@ -17,7 +17,7 @@ app.controller('AuthenticationController', [
 
     $scope.authenticate = function() {
         $window.location.href = 'http://localhost:8081/#/authorization?' +
-            "appId=id&" +
+            "appId=95602&" +
             "appSecret=secret&" +
             "grantType=token&" +
             "scope=firstname,lastname";

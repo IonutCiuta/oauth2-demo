@@ -1,22 +1,42 @@
-<div class="row">
-    <h1>&nbsp;</h1>
-</div>
-<div class="row">
-    <div class="col-md" align="center">
-        <h6 class="text-danger">Allow app to access these?</h6>
+<div ng-show="showDetails">
+    <div class="row">
+        <h1>&nbsp;</h1>
+    </div>
+    <div class="row">
+        <div class="col-md" align="center">
+            <h6 class="text-danger">Hello {{authUser}}! Will you allow {{appName}} to access your profile?</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md" align="center">
+            <p class="text-danger">Requested: {{scopes}}</p>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col" align="center">
+            <button type="submit"
+                    class="btn btn-danger btn-sm"
+                    ng-click="authorize()">Allow</button>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col" align="center">
+            <button type="submit"
+                    class="btn btn-secondary btn-sm"
+                    ng-click="decline()">Decline</button>
+        </div>
     </div>
 </div>
-<div class="row form-group">
-    <div class="col" align="center">
-        <button type="submit"
-                class="btn btn-danger btn-sm"
-                ng-click="authorize()">Yes, continue as {{authUser}}</button>
+
+<div id="spinner" ng-show="showSpinner">
+    <div class="row">
+        <div class="col-md" align="center">
+            <h6 class="text-danger">Processing authorization request...</h6>
+        </div>
     </div>
-</div>
-<div class="row form-group">
-    <div class="col" align="center">
-        <button type="submit"
-                class="btn btn-secondary btn-sm"
-                ng-click="decline()">Decline</button>
+    <div class="row">
+        <div class="col" align="center">
+            <div class="loader"></div>
+        </div>
     </div>
 </div>
