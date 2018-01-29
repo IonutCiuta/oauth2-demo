@@ -1,6 +1,6 @@
 package com.sci.ouath2.app.trusted.dao;
 
-import com.sci.ouath2.app.trusted.model.Authorization;
+import model.Authorization;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

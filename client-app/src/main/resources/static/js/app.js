@@ -7,6 +7,10 @@ app.config(function($routeProvider) {
         .when('/', {
             templateUrl: 'template/authenticate.html',
             controller: 'AuthenticationController'
+        })
+        .when('/credentials', {
+            templateUrl: 'template/credentials.html',
+            controller: 'CredentialsController'
         });
 });
 
@@ -21,5 +25,22 @@ app.controller('AuthenticationController', [
             "appSecret=secret&" +
             "grantType=token&" +
             "scope=firstname,lastname";
+    }
+}]);
+
+app.controller('CredentialsController', [
+                '$scope', '$rootScope', '$localStorage', '$location', '$http',
+                function($scope, $rootScope, $localStorage, $location, $http) {
+    console.log('Credentials area');
+
+    $scope.saveCredentials = function() {
+        console.log('Credentials: ' + JSON.stringify($scope.app));
+
+        $http.post('/api/v1/authorization/credentials', $scope.app, {})
+            .then(function(response) {
+               $location.path('/');
+            }, function(error) {
+                console.error(JSON.stringify(error));
+            });
     }
 }]);

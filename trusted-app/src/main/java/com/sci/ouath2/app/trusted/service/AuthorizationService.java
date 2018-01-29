@@ -3,7 +3,7 @@ package com.sci.ouath2.app.trusted.service;
 import authorization.AuthField;
 import authorization.Grant;
 import com.sci.ouath2.app.trusted.dao.AuthorizationRepo;
-import com.sci.ouath2.app.trusted.model.Authorization;
+import model.Authorization;
 import dto.OAuth2Token;
 import dto.User;
 import http.RequestBuilder;

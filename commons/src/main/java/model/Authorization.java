@@ -1,4 +1,4 @@
-package com.sci.ouath2.app.trusted.model;
+package model;
 
 import org.springframework.data.annotation.Id;
 
