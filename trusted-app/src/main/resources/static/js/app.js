@@ -62,7 +62,7 @@ app.controller('AuthenticationController', [
                 console.log("Authentication was successful: " + response.data.token);
 
                 $localStorage.token = response.data.token;
-                //TODO: take care of this $window.localStorage.setItem("token", "token")
+                $localStorage.user = $scope.user.username;
 
                 $location.path('/account');
             }, function(error) {
@@ -145,7 +145,14 @@ app.controller('AuthorizationController', [
                 function($scope, $rootScope, $localStorage, $location, $http, $window) {
     console.log('Authorization area');
 
+    //TODO: remove this after proper sign in
+    $scope.authUser = "john";
+
     $scope.authorize = function() {
-        console.log("Authorize")
+        console.log("Authorize");
+    }
+
+    $scope.decline = function() {
+        console.log("Decline");
     }
 }]);

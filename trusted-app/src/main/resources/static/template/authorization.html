@@ -10,6 +10,13 @@
     <div class="col" align="center">
         <button type="submit"
                 class="btn btn-danger btn-sm"
-                ng-click="authorize()">Allow</button>
+                ng-click="authorize()">Yes, continue as {{authUser}}</button>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col" align="center">
+        <button type="submit"
+                class="btn btn-secondary btn-sm"
+                ng-click="decline()">Decline</button>
     </div>
 </div>
