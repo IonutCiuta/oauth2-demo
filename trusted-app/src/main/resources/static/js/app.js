@@ -166,7 +166,18 @@ app.controller('AuthorizationController', [
 
     $scope.authorize = function() {
         console.log("Authorize");
+        window.setTimeout(function() {
+            $http.get('/api/v1/account/authenticate/external' +
+                 "?appId=" + params.appId +
+                 "&appSecret=" + params.appSecret +
+                 "&scope=" + params.scope)
+            .then(function(response) {
+                console.log(JSON.stringify(response.data));
 
+            }, function(error) {
+                console.error(error);
+            });
+        }, 3000)
     }
 
     $scope.decline = function() {

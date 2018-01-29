@@ -13,9 +13,18 @@ import java.util.Set;
 public class AccountToken {
     @Id
     private String accountId;
+    private String appId;
     private OAuth2Token token;
     private Set<String> scope = new HashSet<>();
     private Date created;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
 
     public String getAccountId() {
         return accountId;

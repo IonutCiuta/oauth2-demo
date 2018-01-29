@@ -48,9 +48,25 @@ public class AuthorizationController {
             case Grant.PASSWORD:
                 return getTokenForPasswordGrant(data);
 
+            case Grant.TOKEN:
+                return getToken(data);
+
             default:
                 throw new UnsupportedOperationException("Unknown grant type");
         }
+    }
+
+    private OAuth2Token getToken(Map<String, String> data) {
+        String appId = data.get(AuthField.APP_ID);
+        String appSecret = data.get(AuthField.APP_SECRET);
+        String scope = data.get(AuthField.SCOPE);
+
+        if(!securityService.checkAppIdAppSecretCombination(appId, appSecret)) {
+            throw new IllegalStateException("App id/secret don't match");
+        }
+
+        OAuth2Token token = tokenService.generateToken();
+        return tokenService.storeToken(appId, token, getScope(scope)).getToken();
     }
 
     private OAuth2Token getTokenForPasswordGrant(Map<String, String> data) {

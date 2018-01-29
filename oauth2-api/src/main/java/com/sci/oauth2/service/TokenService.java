@@ -34,4 +34,13 @@ public class TokenService {
         accountToken.setScope(scope);
         return accountTokenRepo.save(accountToken);
     }
+
+    public AccountToken storeToken(String appId, OAuth2Token token, Set<String> scope) {
+        AccountToken accountToken = new AccountToken();
+        accountToken.setAppId(appId);
+        accountToken.setToken(token);
+        accountToken.setCreated(new Date());
+        accountToken.setScope(scope);
+        return accountTokenRepo.save(accountToken);
+    }
 }
