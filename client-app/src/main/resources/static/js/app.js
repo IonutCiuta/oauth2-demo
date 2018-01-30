@@ -58,7 +58,10 @@ app.controller('AccountController', [
                 '$scope', '$rootScope', '$localStorage', '$location', '$http',
                 function($scope, $rootScope, $localStorage, $location, $http) {
     var params = $location.search();
-    console.log('Account area: ' + JSON.stringify(params));
+    var token = params.token;
+    console.log('Account area: ' + token);
+
+    $localStorage.token = token;
 
     $scope.showDetails = false;
     $scope.showSpinner = true;
@@ -68,12 +71,12 @@ app.controller('AccountController', [
         $scope.showSpinner = false;
     }
 
-    /*window.setTimeout(function() {
+    window.setTimeout(function() {
         $http.get('/api/v1/account/details',
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'User-Token': $localStorage.token
+                    'User-Token': token
                 }
             }
         ).then(function(response) {
@@ -84,5 +87,5 @@ app.controller('AccountController', [
         }, function(error) {
             console.error(JSON.stringify(error));
         });
-    }, 5000)*/
+    }, 5000)
 }]);

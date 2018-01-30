@@ -61,7 +61,7 @@ public class ResourceController {
 
         return accountToken.getScope().contains(Scope.ALL) ||
                 (accountToken.getScope().contains(Scope.FIRST_NAME) &&
-                        accountToken.getScope().contains(Scope.LAST_NAME) &&
+                        accountToken.getScope().contains(Scope.LAST_NAME) ||
                         accountToken.getScope().contains(Scope.PHONE));
     }
 
