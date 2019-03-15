@@ -29,7 +29,7 @@
 
     <parent>
         <groupId>com.sci</groupId>
-        <artifactId>oauth2-sci</artifactId>
+        <artifactId>oauth2-demo</artifactId>
         <version>1.0</version>
     </parent>
 
@@ -44,6 +44,14 @@
                             <addClasspath>true</addClasspath>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>

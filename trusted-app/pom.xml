@@ -10,7 +10,7 @@
 
     <parent>
         <groupId>com.sci</groupId>
-        <artifactId>oauth2-sci</artifactId>
+        <artifactId>oauth2-demo</artifactId>
         <version>1.0</version>
     </parent>
 
